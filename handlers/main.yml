@@ -1,0 +1,5 @@
+---
+- name: restart iscsid
+  service:
+    name: iscsid
+    state: restarted
