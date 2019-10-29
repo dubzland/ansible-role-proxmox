@@ -1,0 +1,7 @@
+---
+- name: ensure the required packages are installed
+  apt:
+    name: "{{ dubzland_proxmox_packages }}"
+    state: present
+  tags:
+    - proxmox

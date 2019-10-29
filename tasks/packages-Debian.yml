@@ -1,0 +1,28 @@
+- name: ensure the proxmox repo is configured
+  copy:
+    content: "{{ dubzland_proxmox_repo_url }}"
+    dest: "{{ dubzland_proxmox_repo_file }}"
+    owner: root
+    group: root
+    mode: 0644
+  register: proxmox_repo
+  tags:
+    - proxmox
+
+- name: ensure the proxmox repo key is present
+  get_url:
+    url: "{{ dubzland_proxmox_gpg_key }}"
+    dest: "{{ dubzland_proxmox_gpg_file }}"
+    owner: root
+    group: root
+    mode: 0644
+  register: proxmox_gpg
+  tags:
+    - proxmox
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+  when: proxmox_repo is changed or proxmox_gpg is changed
+  tags:
+    - proxmox

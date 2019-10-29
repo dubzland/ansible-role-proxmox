@@ -1,0 +1,11 @@
+---
+- name: ensure the iscsi initiator name is configured
+  lineinfile:
+    dest: /etc/iscsi/initiatorname.iscsi
+    regexp: "InitiatorName="
+    line: "InitiatorName=iqn.{{ dubzland_proxmox_iscsi_prefix }}:{{ inventory_hostname }}"
+    state: present
+  notify:
+    - restart iscsid
+  tags:
+    - proxmox

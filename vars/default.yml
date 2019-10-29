@@ -1,0 +1,3 @@
+---
+dubzland_proxmox_packages:
+  - proxmox-ve

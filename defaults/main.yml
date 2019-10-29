@@ -1,2 +1,2 @@
 ---
-# defaults file for dubzland-proxmox
+dubzland_proxmox_iscsi_prefix: "iqn.2018-05.net.dubzland"

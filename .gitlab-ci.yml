@@ -1,0 +1,11 @@
+---
+image: jdubz/ci-docker-ansible:latest
+
+services:
+  - docker:19.03.1-dind
+
+molecule:
+  stage: test
+  script:
+    - ansible --version
+    - molecule test
