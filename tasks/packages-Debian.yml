@@ -1,28 +1,32 @@
-- name: ensure the proxmox repo is configured
-  copy:
-    content: "{{ dubzland_proxmox_repo_url }}"
-    dest: "{{ dubzland_proxmox_repo_file }}"
-    owner: root
-    group: root
-    mode: 0644
-  register: proxmox_repo
-  tags:
-    - proxmox
-
-- name: ensure the proxmox repo key is present
-  get_url:
-    url: "{{ dubzland_proxmox_gpg_key }}"
-    dest: "{{ dubzland_proxmox_gpg_file }}"
-    owner: root
-    group: root
-    mode: 0644
-  register: proxmox_gpg
-  tags:
-    - proxmox
-
-- name: update apt cache
+---
+- name: ensure gnupg is available for apt_key
   apt:
-    update_cache: yes
-  when: proxmox_repo is changed or proxmox_gpg is changed
+    name: gnupg
+    state: present
+  tags:
+    - proxmox
+
+- name: ensure the proxmox repo keys are present
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ dubzland_proxmox_gpg_keys }}"
+  tags:
+    - proxmox
+
+- name: ensure the proxmox repo is configured
+  apt_repository:
+    repo: "deb {{ dubzland_proxmox_repo_url }} {{ ansible_lsb['codename'] }} {{ dubzland_proxmox_repo_name }}"
+    state: present
+    update_cache: true
+  tags:
+    - proxmox
+
+- name: ensure the required packages are installed
+  apt:
+    name: "{{ dubzland_proxmox_packages }}"
+    state: present
+    install_recommends: false
   tags:
     - proxmox

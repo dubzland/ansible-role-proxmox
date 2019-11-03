@@ -1,6 +1,6 @@
 ---
 - name: set os-specific variables
-  include_vars: "{{ lookup('first_found'), params) }}"
+  include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:

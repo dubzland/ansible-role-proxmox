@@ -6,7 +6,7 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: debian9
+  - name: dubzland-proxmox-debian9
     image: jdubz/docker-ansible-debian9:latest
     override_command: False
     tmpfs:
@@ -15,8 +15,9 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     pre_build_image: true
-  - name: debian10
-    image: jdubz/docker-ansible-debian9:latest
+    privileged: true
+  - name: dubzland-proxmox-debian10
+    image: jdubz/docker-ansible-debian10:latest
     override_command: False
     tmpfs:
       - /run
@@ -25,6 +26,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     pre_build_image: true
+    privileged: true
 provisioner:
   name: ansible
   lint:

@@ -1,11 +1,4 @@
 ---
-- import_tasks: variables.yml
-- import_tasks: "{{ lookup('first_found'), params) }}"
-  vars:
-    params:
-      files:
-        - "packages-{{ ansible_os_family }}-{{ ansible_distribution }}.yml"
-        - "packages-{{ ansible_os_family }}.yml"
-        - "packages.yml"
-
-- import_tasks: configuration.yml
+- include_tasks: variables.yml
+- include_tasks: packages.yml
+- include_tasks: configuration.yml

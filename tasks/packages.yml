@@ -1,7 +1,3 @@
 ---
-- name: ensure the required packages are installed
-  apt:
-    name: "{{ dubzland_proxmox_packages }}"
-    state: present
-  tags:
-    - proxmox
+- include_tasks: packages-Debian.yml
+  when: ansible_os_family == 'Debian'
