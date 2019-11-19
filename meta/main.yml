@@ -1,6 +1,7 @@
 dependencies: []
 
 galaxy_info:
+  role_name: proxmox
   author: t3hprm13
   description: PostgreSQL server for Debian
   company: Cedar House Labs
@@ -9,6 +10,7 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - all
+        - stretch
+        - buster
   galaxy_tags:
-    - dhcp
+    - proxmox

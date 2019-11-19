@@ -1,5 +1,5 @@
-# Dubzland: Proxmox
-[![Gitlab pipeline status (self-hosted)](https://img.shields.io/gitlab/pipeline/jdubz/dubzland-proxmox?gitlab_url=https%3A%2F%2Fgit.dubzland.net)](https://git.dubzland.net/jdubz/dubzland-proxmox/pipelines)
+# Ansible Role: Proxmox
+[![Gitlab pipeline status (self-hosted)](https://git.dubzland.net/dubzland/ansible-role-proxmox/badges/master/pipeline.svg)](https://git.dubzland.net/dubzland/ansible-role-proxmox)
 
 Installs and configures [Proxmox VE](https://proxmox.com).
 
@@ -32,7 +32,7 @@ None
 - hosts: proxmox-servers
   become: yes
   roles:
-  - role: dubzland-proxmox
+  - role: dubzland.proxmox
     vars:
       dubzland_proxmox_iscsi_prefix: "2019-01.com.mydomain"
 ```
